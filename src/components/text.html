@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sơ đồ ERD - Hệ thống Mạng Xã Hội</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        .erd-diagram {
+            width: 100%;
+            height: 1200px;
+            border: 2px solid #ddd;
+            background: #fafafa;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Entity Styles */
+        .entity {
+            position: absolute;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 8px;
+            min-width: 180px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .entity-name {
+            background: #4a90e2;
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .attributes {
+            padding: 10px;
+        }
+        
+        .attribute {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+            font-size: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .attribute:last-child {
+            border-bottom: none;
+        }
+        
+        .pk {
+            color: #e74c3c;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        .fk {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        /* Relationship Lines */
+        .relationship-line {
+            position: absolute;
+            background: #333;
+            z-index: 1;
+        }
+        
+        .horizontal-line {
+            height: 2px;
+        }
+        
+        .vertical-line {
+            width: 2px;
+        }
+        
+        /* Relationship Labels */
+        .relationship-label {
+            position: absolute;
+            background: white;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #666;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            z-index: 2;
+        }
+        
+        /* Cardinality indicators */
+        .cardinality {
+            position: absolute;
+            font-size: 14px;
+            font-weight: bold;
+            color: #e74c3c;
+            z-index: 3;
+        }
+        
+        /* Legend */
+        .legend {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .legend h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .legend-item {
+            display: inline-block;
+            margin-right: 25px;
+            margin-bottom: 5px;
+        }
+        
+        .legend-color {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SƠ ĐỒ ERD - HỆ THỐNG MẠNG XÃ HỘI</h1>
+        
+        <div class="erd-diagram">
+            <!-- USER Entity -->
+            <div class="entity" style="top: 50px; left: 50px;">
+                <div class="entity-name">USER</div>
+                <div class="attributes">
+                    <div class="attribute">
+                        <span class="pk">id</span>
+                        <span>String</span>
+                    </div>
+                    <div class="attribute">
+                        <span>username</span>
+                        <span>String</span>
+                    </div>
+                    <div class="attribute">
+                        <span>avatar</span>
+                        <span>String?</span>
+                    </div>
+                    <div class="attribute">
+                        <span>cover</span>
+                        <span>String?</span>
+                    </div>
+                    <div class="attribute">
+                        <span>name</span>
+                        <span>String?</span>
+                    </div>
+                    <div class="attribute">
+                        <span>surname</span>
+                        <span>String?</span>
+                    </div>
+                    <div class="attribute">
+                        <span>description</span>
+                        <span>String?</span>
+                    </div>
+                    <div class="attribute">
+                        <span>city</span>
+                        <span>String?</span>
+                    </div>
+                    <div class="attribute">
+                        <span>school</span>
+                        <span>String?</span>
+                    </div>
+                    <div class="attribute">
+                        <span>work</span>
+                        <span>String?</span>
+                    </div>
+                    <div class="attribute">
+                        <span>website</span>
+                        <span>String?</span>
+                    </div>
+                    <div class="attribute">
+                        <span>createdAt</span>
+                        <span>DateTime</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- POST Entity -->
+            <div class="entity" style="top: 50px; left: 400px;">
+                <div class="entity-name">POST</div>
+                <div class="attributes">
+                    <div class="attribute">
+                        <span class="pk">id</span>
+                        <span>Int</span>
+                    </div>
+                    <div class="attribute">
+                        <span>desc</span>
+                        <span>String</span>
+                    </div>
+                    <div class="attribute">
+                        <span>img</span>
+                        <span>String?</span>
+                    </div>
+                    <div class="attribute">
+                        <span>createdAt</span>
+                        <span>DateTime</span>
+                    </div>
+                    <div class="attribute">
+                        <span>updatedAt</span>
+                        <span>DateTime</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">userId</span>
+                        <span>String</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COMMENT Entity -->
+            <div class="entity" style="top: 300px; left: 400px;">
+                <div class="entity-name">COMMENT</div>
+                <div class="attributes">
+                    <div class="attribute">
+                        <span class="pk">id</span>
+                        <span>Int</span>
+                    </div>
+                    <div class="attribute">
+                        <span>desc</span>
+                        <span>String</span>
+                    </div>
+                    <div class="attribute">
+                        <span>createdAt</span>
+                        <span>DateTime</span>
+                    </div>
+                    <div class="attribute">
+                        <span>updatedAt</span>
+                        <span>DateTime</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">userId</span>
+                        <span>String</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">postId</span>
+                        <span>Int</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- LIKE Entity -->
+            <div class="entity" style="top: 50px; left: 750px;">
+                <div class="entity-name">LIKE</div>
+                <div class="attributes">
+                    <div class="attribute">
+                        <span class="pk">id</span>
+                        <span>Int</span>
+                    </div>
+                    <div class="attribute">
+                        <span>createdAt</span>
+                        <span>DateTime</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">userId</span>
+                        <span>String</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">postId</span>
+                        <span>Int?</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">commentId</span>
+                        <span>Int?</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FOLLOWER Entity -->
+            <div class="entity" style="top: 550px; left: 50px;">
+                <div class="entity-name">FOLLOWER</div>
+                <div class="attributes">
+                    <div class="attribute">
+                        <span class="pk">id</span>
+                        <span>Int</span>
+                    </div>
+                    <div class="attribute">
+                        <span>createdAt</span>
+                        <span>DateTime</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">followerId</span>
+                        <span>String</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">followingId</span>
+                        <span>String</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FOLLOW_REQUEST Entity -->
+            <div class="entity" style="top: 550px; left: 300px;">
+                <div class="entity-name">FOLLOW_REQUEST</div>
+                <div class="attributes">
+                    <div class="attribute">
+                        <span class="pk">id</span>
+                        <span>Int</span>
+                    </div>
+                    <div class="attribute">
+                        <span>createdAt</span>
+                        <span>DateTime</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">senderId</span>
+                        <span>String</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">receiverId</span>
+                        <span>String</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BLOCK Entity -->
+            <div class="entity" style="top: 550px; left: 550px;">
+                <div class="entity-name">BLOCK</div>
+                <div class="attributes">
+                    <div class="attribute">
+                        <span class="pk">id</span>
+                        <span>Int</span>
+                    </div>
+                    <div class="attribute">
+                        <span>createdAt</span>
+                        <span>DateTime</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">blockerId</span>
+                        <span>String</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">blockedId</span>
+                        <span>String</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- STORY Entity -->
+            <div class="entity" style="top: 300px; left: 50px;">
+                <div class="entity-name">STORY</div>
+                <div class="attributes">
+                    <div class="attribute">
+                        <span class="pk">id</span>
+                        <span>Int</span>
+                    </div>
+                    <div class="attribute">
+                        <span>createdAt</span>
+                        <span>DateTime</span>
+                    </div>
+                    <div class="attribute">
+                        <span>expiresAt</span>
+                        <span>DateTime</span>
+                    </div>
+                    <div class="attribute">
+                        <span>img</span>
+                        <span>String</span>
+                    </div>
+                    <div class="attribute">
+                        <span class="fk">userId</span>
+                        <span>String</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Relationship Lines and Labels -->
+            
+            <!-- USER -> POST (1:N) -->
+            <div class="relationship-line horizontal-line" style="top: 140px; left: 250px; width: 150px;"></div>
+            <div class="cardinality" style="top: 125px; left: 255px;">1</div>
+            <div class="cardinality" style="top: 125px; left: 385px;">N</div>
+            <div class="relationship-label" style="top: 150px; left: 310px;">tạo</div>
+            
+            <!-- USER -> COMMENT (1:N) -->
+            <div class="relationship-line vertical-line" style="top: 320px; left: 130px; height: 70px;"></div>
+            <div class="relationship-line horizontal-line" style="top: 390px; left: 130px; width: 270px;"></div>
+            <div class="cardinality" style="top: 305px; left: 115px;">1</div>
+            <div class="cardinality" style="top: 375px; left: 385px;">N</div>
+            <div class="relationship-label" style="top: 370px; left: 250px;">viết</div>
+            
+            <!-- POST -> COMMENT (1:N) -->
+            <div class="relationship-line vertical-line" style="top: 220px; left: 480px; height: 80px;"></div>
+            <div class="cardinality" style="top: 205px; left: 465px;">1</div>
+            <div class="cardinality" style="top: 285px; left: 465px;">N</div>
+            <div class="relationship-label" style="top: 250px; left: 490px;">có</div>
+            
+            <!-- USER -> LIKE (1:N) -->
+            <div class="relationship-line horizontal-line" style="top: 100px; left: 250px; width: 320px;"></div>
+            <div class="relationship-line vertical-line" style="top: 100px; left: 570px; height: 40px;"></div>
+            <div class="relationship-line horizontal-line" style="top: 140px; left: 570px; width: 180px;"></div>
+            <div class="cardinality" style="top: 85px; left: 255px;">1</div>
+            <div class="cardinality" style="top: 85px; left: 735px;">N</div>
+            <div class="relationship-label" style="top: 80px; left: 430px;">thích</div>
+            
+            <!-- POST -> LIKE (1:N) -->
+            <div class="relationship-line horizontal-line" style="top: 120px; left: 580px; width: 170px;"></div>
+            <div class="cardinality" style="top: 105px; left: 585px;">1</div>
+            <div class="cardinality" style="top: 105px; left: 735px;">N</div>
+            
+            <!-- COMMENT -> LIKE (1:N) -->
+            <div class="relationship-line horizontal-line" style="top: 360px; left: 580px; width: 170px;"></div>
+            <div class="relationship-line vertical-line" style="top: 220px; left: 750px; height: 140px;"></div>
+            <div class="cardinality" style="top: 345px; left: 585px;">1</div>
+            <div class="cardinality" style="top: 205px; left: 735px;">N</div>
+            
+            <!-- USER -> STORY (1:1) -->
+            <div class="relationship-line vertical-line" style="top: 320px; left: 130px; height: 30px;"></div>
+            <div class="cardinality" style="top: 305px; left: 115px;">1</div>
+            <div class="cardinality" style="top: 335px; left: 115px;">1</div>
+            <div class="relationship-label" style="top: 315px; left: 140px;">có</div>
+            
+            <!-- USER -> FOLLOWER (1:N) - Follower -->
+            <div class="relationship-line vertical-line" style="top: 320px; left: 80px; height: 230px;"></div>
+            <div class="relationship-line horizontal-line" style="top: 550px; left: 80px; width: 50px;"></div>
+            <div class="cardinality" style="top: 305px; left: 65px;">1</div>
+            <div class="cardinality" style="top: 535px; left: 115px;">N</div>
+            <div class="relationship-label" style="top: 430px; left: 90px;">theo dõi</div>
+            
+            <!-- USER -> FOLLOWER (1:N) - Following -->
+            <div class="relationship-line vertical-line" style="top: 320px; left: 180px; height: 180px;"></div>
+            <div class="relationship-line horizontal-line" style="top: 500px; left: 130px; width: 50px;"></div>
+            <div class="relationship-line vertical-line" style="top: 500px; left: 130px; height: 50px;"></div>
+            <div class="cardinality" style="top: 305px; left: 165px;">1</div>
+            <div class="cardinality" style="top: 485px; left: 115px;">N</div>
+            
+            <!-- USER -> FOLLOW_REQUEST (1:N) - Sender -->
+            <div class="relationship-line vertical-line" style="top: 320px; left: 200px; height: 180px;"></div>
+            <div class="relationship-line horizontal-line" style="top: 500px; left: 200px; width: 100px;"></div>
+            <div class="relationship-line vertical-line" style="top: 500px; left: 300px; height: 50px;"></div>
+            <div class="relationship-line horizontal-line" style="top: 550px; left: 300px; width: 50px;"></div>
+            <div class="cardinality" style="top: 305px; left: 185px;">1</div>
+            <div class="cardinality" style="top: 535px; left: 335px;">N</div>
+            <div class="relationship-label" style="top: 480px; left: 220px;">gửi yêu cầu</div>
+            
+            <!-- USER -> FOLLOW_REQUEST (1:N) - Receiver -->
+            <div class="relationship-line vertical-line" style="top: 320px; left: 220px; height: 160px;"></div>
+            <div class="relationship-line horizontal-line" style="top: 480px; left: 220px; width: 130px;"></div>
+            <div class="relationship-line vertical-line" style="top: 480px; left: 350px; height: 70px;"></div>
+            <div class="cardinality" style="top: 305px; left: 205px;">1</div>
+            <div class="cardinality" style="top: 465px; left: 335px;">N</div>
+            <div class="relationship-label" style="top: 460px; left: 270px;">nhận yêu cầu</div>
+            
+            <!-- USER -> BLOCK (1:N) - Blocker & Blocked -->
+            <div class="relationship-line vertical-line" style="top: 320px; left: 240px; height: 140px;"></div>
+            <div class="relationship-line horizontal-line" style="top: 460px; left: 240px; width: 310px;"></div>
+            <div class="relationship-line vertical-line" style="top: 460px; left: 550px; height: 90px;"></div>
+            <div class="cardinality" style="top: 305px; left: 225px;">1</div>
+            <div class="cardinality" style="top: 535px; left: 535px;">N</div>
+            <div class="relationship-label" style="top: 440px; left: 370px;">chặn</div>
+        </div>
+        
+        <div class="legend">
+            <h3>Chú thích:</h3>
+            <div class="legend-item">
+                <span class="legend-color pk" style="background: #e74c3c;"></span>
+                <span>Primary Key (PK)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color fk" style="background: #3498db;"></span>
+                <span>Foreign Key (FK)</span>
+            </div>
+            <div class="legend-item">
+                <span style="font-weight: bold;">1</span> - Một
+            </div>
+            <div class="legend-item">
+                <span style="font-weight: bold;">N</span> - Nhiều
+            </div>
+            <div class="legend-item">
+                <span>? - Nullable (có thể null)</span>
+            </div>
+        </div>
+        
+        <div style="margin-top: 20px; padding: 15px; background: #e8f4fd; border-radius: 5px;">
+            <h3 style="margin-top: 0; color: #2c3e50;">Mô tả quan hệ:</h3>
+            <ul>
+                <li><strong>USER - POST (1:N):</strong> Một user có thể tạo nhiều bài đăng</li>
+                <li><strong>USER - COMMENT (1:N):</strong> Một user có thể viết nhiều bình luận</li>
+                <li><strong>POST - COMMENT (1:N):</strong> Một bài đăng có thể có nhiều bình luận</li>
+                <li><strong>USER - LIKE (1:N):</strong> Một user có thể like nhiều bài đăng/bình luận</li>
+                <li><strong>POST/COMMENT - LIKE (1:N):</strong> Một bài đăng/bình luận có thể được like nhiều lần</li>
+                <li><strong>USER - STORY (1:1):</strong> Một user chỉ có thể có một story tại một thời điểm</li>
+                <li><strong>USER - FOLLOWER (M:N):</strong> Quan hệ nhiều-nhiều giữa người theo dõi và được theo dõi</li>
+                <li><strong>USER - FOLLOW_REQUEST (M:N):</strong> Quan hệ nhiều-nhiều cho yêu cầu follow</li>
+                <li><strong>USER - BLOCK (M:N):</strong> Quan hệ nhiều-nhiều cho việc chặn người dùng</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
